@@ -30,6 +30,17 @@ export class SaintProvider {
       });
   }
 
+  searchSaints(nome: string): Promise<Santo[]> {
+    return new Promise (
+      resolve => {
+        this.http.get("http://santieicone.azurewebsites.net/search/" + nome)
+        .map(res => res.json())
+        .subscribe(data => {
+            this.santi = data;
+            resolve(this.santi);
+        });
+      });
+  }
 
 
 }
